@@ -16,8 +16,98 @@
 </head>
 
 <body>
+  <header class="navbar">
+      <section class="navbar-section">
+        <!-- <a href="#.." class="navbar-brand mr-2">Contract Fit</a> -->
+      </section>
+      <section class="navbar-center">
+        <span class="navbar-brand mr-2">Contract Fit</span>
 
- 
+          <!-- centered logo or brand -->
+      </section>
+      <!-- <section class="navbar-section">
+        <div class="input-group input-inline">
+          <input class="form-input" type="text" placeholder="search">
+          <button class="btn btn-primary input-group-btn">Search</button>
+        </div>
+      </section> -->
+  </header>
+
+
+  <div class="container">
+      <div class="columns">
+        <section class="column col-3">
+          <h1>Type of Company</h1>
+          <div class="form-group">
+              <select class="form-select">
+                <option>Country of Origin</option>
+                <option>France</option>
+                <option>Other</option>
+              </select>
+          </div>
+          
+          <div class="form-group">
+              <select class="form-select">
+                <option>Revenue </option>
+                <option> less than 2 million sales (micro )</option>
+                <option>2 to 10 millions (small)</option>
+                <option>10 to 50 millions (medium)</option>
+                <option>More than 50 millions (medium)</option>
+              </select>       
+          </div>
+      
+          <div class="form-group">
+              <label class="form-label" for="input-example-1">Product keyword</label>
+              <input class="form-input" type="text" id="input-example-1" placeholder="Product keyword">
+            </div>
+      
+            <button class="btn btn-primary input-group-btn" id="submit">Submit</button>
+
+          </section>
+        <section class="column col-9">
+          <h1>Recommendations</h1>
+          <div class="empty" id="waitingentry">
+              <div class="empty-icon">
+                <i class="icon icon-search"></i>
+              </div>
+              <p class="empty-title h5">Enter a company category to have recommendations </p>
+
+          </div>
+          <div id="results" class="d-none">
+
+              <div class="card">
+                  <div class="card-image">
+                    <!-- <img src="img/osx-el-capitan.jpg" class="img-responsive"> -->
+                  </div>
+                  <div class="card-header">
+                    <div class="card-title h5">UN</div>
+                    <div class="card-subtitle text-gray"> REfugees divisions</div>
+                  </div>
+                  <div class="card-body">
+                      <P>Number of contract awarded</P>
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-primary">...</button>
+                  </div>
+                </div>
+          </div>
+          
+        </section>
+      </div> <!-- columns -->
+  </div> <!-- containers-->
+
+  <script>
+    
+    document.getElementById("submit").onclick = function() {loadRecommendations()};
+
+    function loadRecommendations() {
+      document.getElementById("waitingentry").classList.toggle("d-none");
+      document.getElementById("results").classList.toggle("d-none");
+
+    }
+  </script>
+
+
 </body>
 
 </html>
