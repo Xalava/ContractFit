@@ -25,7 +25,7 @@
         <!-- <a href="#.." class="navbar-brand mr-2">Contract Fit</a> -->
       </section>
       <section class="navbar-center">
-        <span class="navbar-brand mr-2">Contract Fit</span>
+        <span class="navbar-brand mr-2">Transparent Opportunities</span>
 
           <!-- centered logo or brand -->
       </section>
@@ -117,21 +117,32 @@
       </div> <!-- columns -->
   </div> <!-- containers-->
 
-  <!-- <div class="modal active" id="modal-id">
+  <div class="modal active" id="modal-id">
       <a href="#close" class="modal-overlay" aria-label="Close"></a>
       <div class="modal-container">
         <div class="modal-header">
           <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
           <div class="modal-title h5">Country Selection</div>
         </div>
-        <div class="modal-body">
-          <div class="content">
-          </div>
+        <!-- <div class="modal-body"> -->
+        <div>
+           <!-- <div class="content" > -->
+            <div id="world-map" style="height: 300px;"></div></div>
+          <!-- </div> -->
         </div>
         <div class="modal-footer">
         </div>
       </div>
-    </div> -->
+    </div>
+  <script src="./modal.spectre.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+ 
+
+  <script src="./js/jvectormap.min.js"></script>
+  <script src="./js/map.js"></script>
 
   <script src="./data.js"></script>
   <script>
@@ -301,6 +312,11 @@
   .ct-series-b .ct-line {
     stroke: orangered;
   }
+
+  .jvectormap-container {
+    height:100%;
+    width:100%;
+}
   </style>
 
 
