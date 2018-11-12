@@ -44,11 +44,25 @@
           <h1>Type of Company</h1>
           <div class="form-group">
               <select class="form-select">
-                <option>Country of Origin</option>
-                <option>France</option>
-                <option>Spain</option>
-                <option>India</option>
-                <option>Other</option>
+                <option>Region of Origin</option>
+                <option>Australia and New Zealand</option>
+                <option>Central Asia</option>
+                <option>Eastern Asia</option>
+                <option>Eastern Europe</option>
+                <option>Latin America and the Caribbean</option>
+                <option>Melanesia</option>
+                <option>Micronesia</option>
+                <option>Northern Africa</option>
+                <option>Northern America</option>
+                <option>Northern Europe</option>
+                <option>Polynesia</option>
+                <option>South-eastern Asia</option>
+                <option>Southern Asia</option>
+                <option>Southern Europe</option>
+                <option>Sub-Saharan Africa</option>
+                <option>Western Asia</option>
+                <option>Western Europe</option>
+
               </select>
           </div>
           
@@ -91,7 +105,7 @@
 
           </div>
           <div class="loading loading-lg d-none" id="loading"></div>
-          <div class="ct-chart" id="chart"> </div>
+          <div class="ct-chart d-none" id="chart"> </div>
 
           <div id="results" class="d-none">
 
@@ -165,62 +179,123 @@
           </div>
          
       </div>`
+  }
+
+  document.getElementById("submit").onclick = function() {loadRecommendations()}
+
+  function loadRecommendations() {
+    document.getElementById("waitingentry").classList.toggle("d-none")
+    document.getElementById("loading").classList.toggle("d-none");
+    document.getElementById("chart").classList.toggle("d-none");
+
+    
+    // delete prior results
+    let resultsElem = document.querySelector('#results');
+    while (resultsElem.firstChild) {
+      resultsElem.removeChild(resultsElem.firstChild);
     }
 
-    document.getElementById("submit").onclick = function() {loadRecommendations()}
-
-    function loadRecommendations() {
-      document.getElementById("waitingentry").classList.toggle("d-none")
-      document.getElementById("loading").classList.toggle("d-none");
-
-      
-      // delete prior results
-      let resultsElem = document.querySelector('#results');
-      while (resultsElem.firstChild) {
-        resultsElem.removeChild(resultsElem.firstChild);
-      }
-
-      // add new element 
-      resultsElem.innerHTML += templateReco (agencies.ILO, "First recommendation","red" )
+    // add new element 
+    resultsElem.innerHTML += templateReco (agencies.ILO, "First recommendation","red" )
 
 
-      let relevantYears = ['2012', '2013', '2014', '2015', '2016']
+    let relevantYears = ['2012', '2013', '2014', '2015', '2016']
 
-      // Create a new line chart object where as first parameter we pass in a selector
-      // that is resolving to our chart container element. The Second parameter
-      // is the actual data object.
+    // Create a new line chart object where as first parameter we pass in a selector
+    // that is resolving to our chart container element. The Second parameter
+    // is the actual data object.
+    setTimeout(() => {
       resultsElem.innerHTML += templateReco (agencies.IMF, "Second recommendation", "orangered")
-      resultsElem.innerHTML += templateReco (agencies.ECLAC, "Third recommendation", "yellow")
+    }, 700);
+    setTimeout(() => {
+      resultsElem.innerHTML += templateReco (agencies.ECLAC, "Third recommendation", "#f4c63d")
+    }, 1400);
 
-      // var reco = document.createElement("div")
-      // agency = agencies.ILO
-      // reco.innerHTML = templateReco
-      // console.log(reco)
-      // resultsElem.append(reco)
-
-
-
-    // niumbering
-      document.getElementById("results").classList.toggle("d-none");
-      document.getElementById("loading").classList.toggle("d-none");
+    // var reco = document.createElement("div")
+    // agency = agencies.ILO
+    // reco.innerHTML = templateReco
+    // console.log(reco)
+    // resultsElem.append(reco)
 
 
-      // new Chartist.Bar('#ILO-chart', {labels: relevantYears, series: [[5, 2, 4, 2, 7],[6, 8, 10, 2, 9]]})
-      // new Chartist.Bar('#ILO-chart2', {labels: relevantYears, series: [[5, 2, 4, 2, 7],[6, 8, 10, 2, 9]]})
 
-      // new Chartist.Line('#IMF-chart', {labels: relevantYears, series: [[7, 2, 4, 2, 3]]});
-      new Chartist.Line('#chart', {labels: relevantYears, series: [
-        [7, 2, 5, 6, 7],
-        [6, 2, 1, 2, 4],
-        [4, 5, 2, 1, 1]
+  // niumbering
+    document.getElementById("results").classList.toggle("d-none");
+    document.getElementById("loading").classList.toggle("d-none");
+
+
+    // new Chartist.Bar('#ILO-chart', {labels: relevantYears, series: [[5, 2, 4, 2, 7],[6, 8, 10, 2, 9]]})
+    // new Chartist.Bar('#ILO-chart2', {labels: relevantYears, series: [[5, 2, 4, 2, 7],[6, 8, 10, 2, 9]]})
+
+    // new Chartist.Line('#IMF-chart', {labels: relevantYears, series: [[7, 2, 4, 2, 3]]});
+    let chart = new Chartist.Line('#chart', {labels: relevantYears, series: [
+      [7, 2, 5, 6, 7],
+      [6, 2, 1, 2, 4],
+      [4, 5, 2, 1, 1]
       ]},
       {
         low: 0,
         showArea: true
       }
-      );
+    )
 
-    }
+    
+
+    var seq = 0,
+      delays = 700,
+      durations = 300;
+
+      chart.on('created', function() {
+        seq = 0;
+      });
+
+      chart.on('draw', function(data) {
+
+        if(data.type === 'line') {
+          data.element.animate({
+            opacity: {
+              // The delay when we like to start the animation
+              begin: seq * delays ,
+              // Duration of the animation
+              dur: durations,
+              // The value where the animation should start
+              from: 0,
+              // The value where it should end
+              to: 1
+            }
+          });
+          seq++;
+        } else if(data.type === 'point') {
+          data.element.animate({
+            x1: {
+              begin: seq * delays,
+              dur: durations,
+              from: data.x - 10,
+              to: data.x,
+              easing: 'easeOutQuart'
+            },
+            x2: {
+              begin: seq * delays,
+              dur: durations,
+              from: data.x - 10,
+              to: data.x,
+              easing: 'easeOutQuart'
+            },
+            opacity: {
+              begin: seq * delays,
+              dur: durations,
+              from: 0,
+              to: 1,
+              easing: 'easeOutQuart'
+            }
+          });
+        }
+      });
+
+  }
+
+
+
   </script>
   <style>
   .ct-series-b .ct-line {
