@@ -105,12 +105,14 @@
 
           </div>
           <div class="loading loading-lg d-none" id="loading"></div>
-          <div class="ct-chart d-none" id="chart"> </div>
+          <div id="chart-area" class="d-none">
+              <h5>Volume (million $) of contracts signed for textile with Sub-Saharan Companies</h5>
+              <div class="ct-chart" id="chart"> </div>
+
+          </div>
+
 
           <div id="results" class="d-none">
-
-
-
           </div>
           
         </section>
@@ -154,7 +156,7 @@
 
             <div class="columns ">
               <div class="column col-1 md-5">
-                  <img src=${agency.logo} class="img-responsive">
+                  <img src=${'logos/'+ agency.acronym+'.png'} class="img-responsive">
               </div>
               <div class="column col-11">
                 <div class="card-header">
@@ -176,7 +178,7 @@
                   <div class="card-subtitle text-gray"><i class="icon icon-location"></i>   ${agency.headquarters}</div>
                 </div> 
                 <div class="card-body">
-                  Agriculture - Europe
+                <!-- Agriculture - Europe -->
                   
                 </div>
                 <div class="card-footer">
@@ -197,7 +199,7 @@
   function loadRecommendations() {
     document.getElementById("waitingentry").classList.toggle("d-none")
     document.getElementById("loading").classList.toggle("d-none");
-    document.getElementById("chart").classList.toggle("d-none");
+    document.getElementById("chart-area").classList.toggle("d-none");
 
     
     // delete prior results
@@ -219,7 +221,7 @@
       resultsElem.innerHTML += templateReco (agencies.IMF, "Second recommendation", "orangered")
     }, 700);
     setTimeout(() => {
-      resultsElem.innerHTML += templateReco (agencies.ECLAC, "Third recommendation", "#f4c63d")
+      resultsElem.innerHTML += templateReco (agencies.ECA, "Third recommendation", "#f4c63d")
     }, 1400);
 
     // var reco = document.createElement("div")
