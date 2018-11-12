@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Argus Panoptes</title>
+  <title>Contract Fit</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
@@ -46,13 +46,23 @@
               </select>
           </div>
           
-          <div class="form-group">
+          <!-- <div class="form-group">
               <select class="form-select">
                 <option>Revenue </option>
                 <option> less than 2 million sales (micro )</option>
                 <option>2 to 10 millions (small)</option>
                 <option>10 to 50 millions (medium)</option>
                 <option>More than 50 millions (medium)</option>
+              </select>       
+          </div> -->
+
+          <div class="form-group">
+              <select class="form-select">
+                <option>Size of opportunity </option>
+                <option> less than $ 30 000 </option>
+                <option> 30 to $ 50 000</option>
+                <option> 50 to $ 100 000</option>
+                <option>More than $100 000</option>
               </select>       
           </div>
       
@@ -75,33 +85,70 @@
           </div>
           <div id="results" class="d-none">
 
-              <div class="card">
-                  <div class="card-image">
-                    <!-- <img src="img/osx-el-capitan.jpg" class="img-responsive"> -->
-                  </div>
-                  <div class="card-header">
-                    <div class="card-title h5">UN</div>
-                    <div class="card-subtitle text-gray"> REfugees divisions</div>
-                  </div>
-                  <div class="card-body">
-                      <P>Number of contract awarded</P>
-                  </div>
-                  <div class="card-footer">
-                    <button class="btn btn-primary">...</button>
-                  </div>
-                </div>
+
+
           </div>
           
         </section>
       </div> <!-- columns -->
   </div> <!-- containers-->
 
+  <script src="./data.js"></script>
   <script>
-    
-    document.getElementById("submit").onclick = function() {loadRecommendations()};
+
+  function templateReco (agency, data ) {
+      return `    
+      <div class="card" >
+
+
+          <div class="card-header">
+            <div class="columns ">
+              <div class="column col-11">
+                  <div class="card-title h5">${agency.name}</div>
+                  <div class="card-subtitle text-gray">${agency.description}</div>
+                  <div class="card-subtitle"><i class="icon icon-location"></i>   ${agency.headquarters}</div>
+              </div>
+              <div class="column col-1">
+                  <img src=${agency.logo} class="img-responsive">
+              </div>
+            </div>            
+          </div>
+          <div class="card-body">
+              <P>Number of contract awarded</P>
+              ${data}
+          </div>
+          <div class="card-footer">
+              <a src="" ><i class="icon icon-forward"></i>  website</div>
+
+            <!-- <button class="btn btn-primary">...</button> -->
+          </div>
+      </div>`
+    }
+
+    document.getElementById("submit").onclick = function() {loadRecommendations()}
 
     function loadRecommendations() {
-      document.getElementById("waitingentry").classList.toggle("d-none");
+      document.getElementById("waitingentry").classList.toggle("d-none")
+      
+      // delete prior results
+      let resultsElem = document.querySelector('#results');
+      while (resultsElem.firstChild) {
+        resultsElem.removeChild(resultsElem.firstChild);
+      }
+
+      // add new element 
+      resultsElem.innerHTML += templateReco (agencies.ILO, "2016: 40, 2017: 30, 2018: 100" )
+      resultsElem.innerHTML += templateReco (agencies.IMF, "2016: 40, 2017: 30, 2018: 100" )
+      resultsElem.innerHTML += templateReco (agencies.ECLAC, "2016: 40, 2017: 30, 2018: 100" )
+
+      // var reco = document.createElement("div")
+      // agency = agencies.ILO
+      // reco.innerHTML = templateReco
+      // console.log(reco)
+      // resultsElem.append(reco)
+
+
+
       document.getElementById("results").classList.toggle("d-none");
 
     }
