@@ -1,23 +1,27 @@
 let agencies = {
   "IMF" : {
+    "acronym":"IMF",
     "name": "The International Monetary Fund",
     "description": "IMF facilitates international monetary cooperation and financial stability, and provides a permanent forum for consultation, advice, and assistance on financial issues",
     "headquarters":"Washington D.C., USA",
     "logo":"logos/IMF.png"
   },
   "ILO" : {
+    "acronym":"ILO",
     "name": "The International Labor Organization",
     "description": "ILO formulates policies and programs to improve working conditions and employment opportunities, and defines international labor standards as guidelines for governments.",
     "headquarters":"Geneva, Switerland",
     "logo": "logos/ILO.png"
   },
    "ECLAC" : {
+    "acronym":"ECLAC",
     "name": "United Nations Economic Commission for Latin America and the Caribbean",
     "description": "ECLAC is a United Nations regional commission to encourage economic cooperation",
     "headquarters":"Santiago, Chile",
     "logo": "logos/ECLAC.png"
   },
    "ECA" : {
+    "acronym":"ECA",
     "name": "United Nations Economic Commission for Africa",
     "description": "The United Nations Economic Commission for Africa (UNECA or ECA) was established in 1958 to encourage economic cooperation among its member states (the nations of the African continent) following a recommendation of the United Nations General Assembly",
     "headquarters":"Addis Abeba, Ethiopia"

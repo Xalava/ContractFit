@@ -9,6 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
   <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+  <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
   <script>
 
   </script>
@@ -42,6 +46,8 @@
               <select class="form-select">
                 <option>Country of Origin</option>
                 <option>France</option>
+                <option>Spain</option>
+                <option>India</option>
                 <option>Other</option>
               </select>
           </div>
@@ -56,7 +62,7 @@
               </select>       
           </div> -->
 
-          <div class="form-group">
+          <!-- <div class="form-group">
               <select class="form-select">
                 <option>Size of opportunity </option>
                 <option> less than $ 30 000 </option>
@@ -64,7 +70,7 @@
                 <option> 50 to $ 100 000</option>
                 <option>More than $100 000</option>
               </select>       
-          </div>
+          </div> -->
       
           <div class="form-group">
               <label class="form-label" for="input-example-1">Product keyword</label>
@@ -76,6 +82,7 @@
           </section>
         <section class="column col-9">
           <h1>Recommendations</h1>
+          
           <div class="empty" id="waitingentry">
               <div class="empty-icon">
                 <i class="icon icon-search"></i>
@@ -83,6 +90,9 @@
               <p class="empty-title h5">Enter a company category to have recommendations </p>
 
           </div>
+          <div class="loading loading-lg d-none" id="loading"></div>
+          <div class="ct-chart" id="chart"> </div>
+
           <div id="results" class="d-none">
 
 
@@ -93,35 +103,67 @@
       </div> <!-- columns -->
   </div> <!-- containers-->
 
+  <!-- <div class="modal active" id="modal-id">
+      <a href="#close" class="modal-overlay" aria-label="Close"></a>
+      <div class="modal-container">
+        <div class="modal-header">
+          <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
+          <div class="modal-title h5">Country Selection</div>
+        </div>
+        <div class="modal-body">
+          <div class="content">
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div> -->
+
   <script src="./data.js"></script>
   <script>
 
-  function templateReco (agency, data ) {
+  function templateReco (agency, subtitle, color ) {
       return `    
       <div class="card" >
+              <div style="color: ${color}"> ${subtitle}</div>
 
-
-          <div class="card-header">
             <div class="columns ">
-              <div class="column col-11">
-                  <div class="card-title h5">${agency.name}</div>
-                  <div class="card-subtitle text-gray">${agency.description}</div>
-                  <div class="card-subtitle"><i class="icon icon-location"></i>   ${agency.headquarters}</div>
-              </div>
-              <div class="column col-1">
+              <div class="column col-1 md-5">
                   <img src=${agency.logo} class="img-responsive">
               </div>
-            </div>            
-          </div>
-          <div class="card-body">
-              <P>Number of contract awarded</P>
-              ${data}
-          </div>
-          <div class="card-footer">
-              <a src="" ><i class="icon icon-forward"></i>  website</div>
+              <div class="column col-11">
+                <div class="card-header">
+                  <div class="popover popover-bottom">
+                    <div class="card-title h5"> ${agency.name}</div>
+                    <div class="popover-container">
+                      <div class="card">
+                        <div class="card-header">
+                            <h6>${agency.name}</h6>
+                        </div>
+                        <div class="card-body">
+                            ${agency.description}
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                      </div>                   
+                    </div>
+                  </div>
+                  <div class="card-subtitle text-gray"><i class="icon icon-location"></i>   ${agency.headquarters}</div>
+                </div> 
+                <div class="card-body">
+                  Agriculture - Europe
+                  
+                </div>
+                <div class="card-footer">
+                    <a src="" class="float-right" ><i class="icon icon-forward"></i> Procurement website</div>
 
-            <!-- <button class="btn btn-primary">...</button> -->
+                  <!-- <button class="btn btn-primary">...</button> -->
+                </div>           
+
+              </div>
+
           </div>
+         
       </div>`
     }
 
@@ -129,6 +171,8 @@
 
     function loadRecommendations() {
       document.getElementById("waitingentry").classList.toggle("d-none")
+      document.getElementById("loading").classList.toggle("d-none");
+
       
       // delete prior results
       let resultsElem = document.querySelector('#results');
@@ -137,9 +181,16 @@
       }
 
       // add new element 
-      resultsElem.innerHTML += templateReco (agencies.ILO, "2016: 40, 2017: 30, 2018: 100" )
-      resultsElem.innerHTML += templateReco (agencies.IMF, "2016: 40, 2017: 30, 2018: 100" )
-      resultsElem.innerHTML += templateReco (agencies.ECLAC, "2016: 40, 2017: 30, 2018: 100" )
+      resultsElem.innerHTML += templateReco (agencies.ILO, "First recommendation","red" )
+
+
+      let relevantYears = ['2012', '2013', '2014', '2015', '2016']
+
+      // Create a new line chart object where as first parameter we pass in a selector
+      // that is resolving to our chart container element. The Second parameter
+      // is the actual data object.
+      resultsElem.innerHTML += templateReco (agencies.IMF, "Second recommendation", "orangered")
+      resultsElem.innerHTML += templateReco (agencies.ECLAC, "Third recommendation", "yellow")
 
       // var reco = document.createElement("div")
       // agency = agencies.ILO
@@ -149,10 +200,33 @@
 
 
 
+    // niumbering
       document.getElementById("results").classList.toggle("d-none");
+      document.getElementById("loading").classList.toggle("d-none");
+
+
+      // new Chartist.Bar('#ILO-chart', {labels: relevantYears, series: [[5, 2, 4, 2, 7],[6, 8, 10, 2, 9]]})
+      // new Chartist.Bar('#ILO-chart2', {labels: relevantYears, series: [[5, 2, 4, 2, 7],[6, 8, 10, 2, 9]]})
+
+      // new Chartist.Line('#IMF-chart', {labels: relevantYears, series: [[7, 2, 4, 2, 3]]});
+      new Chartist.Line('#chart', {labels: relevantYears, series: [
+        [7, 2, 5, 6, 7],
+        [6, 2, 1, 2, 4],
+        [4, 5, 2, 1, 1]
+      ]},
+      {
+        low: 0,
+        showArea: true
+      }
+      );
 
     }
   </script>
+  <style>
+  .ct-series-b .ct-line {
+    stroke: orangered;
+  }
+  </style>
 
 
 </body>
