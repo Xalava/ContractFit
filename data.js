@@ -63,5 +63,23 @@ let agencies = {
     "description": "The Office of the United Nations High Commissioner for Refugees is an United Nations programme with the mandate to protect refugees, forcibly displaced communities and stateless people, and assist in their voluntary repatriation, local integration or resettlement to a third country",
     "headquarters":"Geneva, Switzerland"
   },
+  "UNICEF" : {
+    "acronym":"UNICEF",
+    "name": "United Nations High Commissioner for Refugees",
+    "description": "The Office of the United Nations High Commissioner for Refugees is an United Nations programme with the mandate to protect refugees, forcibly displaced communities and stateless people, and assist in their voluntary repatriation, local integration or resettlement to a third country",
+    "headquarters":"Geneva, Switzerland"
+  },
+  "UNDP" : {
+    "acronym":"UNDP",
+    "name": "United Nations Development Programme",
+    "description": "UNDP advocates for change and connects countries to knowledge, experience and resources to help people build a better life. It provides expert advice, training and grants support to developing countries, with increasing emphasis on assistance to the least developed countries. It promotes technical and investment cooperation among nations.",
+    "headquarters":"New York City, USA"
+  },
+  "UNFPA" : {
+    "acronym":"UNFPA",
+    "name": "United Nations Population Fund",
+    "description": "the lead UN agency for delivering a world where every pregnancy is wanted, every childbirth is safe and every young person's potential is fulfilled",
+    "headquarters":"New York City, USA"
+  },
 
 }

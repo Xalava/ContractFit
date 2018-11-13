@@ -90,7 +90,7 @@
       
           <div class="form-group">
               <label class="form-label" for="input-example-1">Product keyword</label>
-              <input class="form-input" type="text" id="input-example-1" placeholder="Product keyword" value="Medical Supplies">
+              <input class="form-input" type="text" id="input-example-1" placeholder="Product keyword" value="Medical">
             </div>
       
             <button class="btn btn-primary input-group-btn" id="submit">Submit</button>
@@ -296,19 +296,19 @@
     }
 
     // add new element 
-    resultsElem.innerHTML += templateReco (agencies.UNHCR, "Top 1 Contract Provider","green" )
+    resultsElem.innerHTML += templateReco (agencies.UNICEF, "Top 1 Contract Provider","green" )
 
 
-    let relevantYears = ['2012', '2013', '2014', '2015', '2016']
+    let relevantYears = ['2010','2011','2012', '2013', '2014', '2015', '2016','2017']
 
     // Create a new line chart object where as first parameter we pass in a selector
     // that is resolving to our chart container element. The Second parameter
     // is the actual data object.
     setTimeout(() => {
-      resultsElem.innerHTML += templateReco (agencies.ECA, "Top 2 Contract Provider", "blue")
+      resultsElem.innerHTML += templateReco (agencies.UNDP, "Top 2 Contract Provider", "blue")
     }, 900);
     setTimeout(() => {
-      resultsElem.innerHTML += templateReco (agencies.UNAIDS, "Top 3 Contract Provider  ", "blueviolet")
+      resultsElem.innerHTML += templateReco (agencies.UNFPA, "Top 3 Contract Provider  ", "blueviolet")
     }, 1800);
 
     // var reco = document.createElement("div")
@@ -329,10 +329,10 @@
 
     // new Chartist.Line('#IMF-chart', {labels: relevantYears, series: [[7, 2, 4, 2, 3]]});
     let chart = new Chartist.Line('#chart', {labels: relevantYears, series: [
-      [7, 2, 5, 6, 7],
-      [6, 2, 1, 2, 4],
-      [4, 5, 2, 1, 1]
-      ]},
+  [0.81,1.64,0.77,22.41,5.08,45.88,67.3,84.58],
+  [0.07,0.27,13.38,0.16,0.58,3.51,3.58,1.69],
+  [0.47,2.52,0.39,0.52,0.19,0.57,0.37,0.08]
+]},
       {
         low: 0,
         showArea: true
@@ -378,7 +378,8 @@
               begin: seq * delays,
               dur: durations,
               from: data.x - 10,
-              to: data.x,
+              to: data.x
+,
               easing: 'easeOutQuart'
             },
             opacity: {
