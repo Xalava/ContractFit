@@ -50,6 +50,18 @@ let agencies = {
     "name": "International Fund for Agricultural Development",
     "description": "IFAD is an international financial institution and a specialised agency of the United Nations dedicated to eradicating poverty and hunger in rural areas of developing countries.",
     "headquarters":"Roma, Italy"
-  }
+  },
+  "UNAIDS" : {
+    "acronym":"UNAIDS",
+    "name": "Joint United Nations Programme on HIV/AIDS",
+    "description": "The Joint United Nations Programme on HIV and AIDS (UNAIDS) is the main advocate for accelerated, comprehensive and coordinated global action on the HIV/AIDS pandemic.",
+    "headquarters":"Geneva, Switzerland"
+  },
+  "UNHCR" : {
+    "acronym":"UNHCR",
+    "name": "United Nations High Commissioner for Refugees",
+    "description": "The Office of the United Nations High Commissioner for Refugees is an United Nations programme with the mandate to protect refugees, forcibly displaced communities and stateless people, and assist in their voluntary repatriation, local integration or resettlement to a third country",
+    "headquarters":"Geneva, Switzerland"
+  },
 
 }

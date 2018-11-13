@@ -34,7 +34,10 @@ $(function(){
     },
     onRegionClick: function(event, code)
     { 
-      event.preventDefault();
+      event.preventDefault()
+      console.log("regionclick", event, code)
+      $("#modal-domain").addClass("active")
+      $("#modal-map").removeClass("active")
 
 
     }
